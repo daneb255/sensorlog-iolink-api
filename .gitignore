@@ -4,3 +4,4 @@ core/.env
 **/__pycache__/
 *.py[cod]
 **.log
+venv/
