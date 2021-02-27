@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: rabbitmq
+  name: rabbitmq-mgmt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: rabbitmq
+  template:
+    metadata:
+      labels:
+        run: rabbitmq
+    spec:
+      containers:
+        - image: rabbitmq:3.8
+          imagePullPolicy: Always
+          name: rabbitmq
+          envFrom:
+            - configMapRef:
+                name: env-rabbitmq

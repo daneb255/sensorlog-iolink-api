@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: sensorlog-consumer
+  name: sensorlog-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: sensorlog-consumer
+  template:
+    metadata:
+      labels:
+        run: sensorlog-consumer
+    spec:
+      containers:
+        - image: dbitzer/sensorlog-consumer:1.3
+          imagePullPolicy: Always
+          name: sensorlog-consumer
+          envFrom:
+            - configMapRef:
+                name: env-sensorlog-consumer

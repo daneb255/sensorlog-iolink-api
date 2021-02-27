@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: sensorlog-api
+  name: sensorlog-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: sensorlog-api
+  template:
+    metadata:
+      labels:
+        run: sensorlog-api
+    spec:
+      containers:
+        - image: dbitzer/sensorlog-api:1.2
+          imagePullPolicy: Always
+          name: sensorlog-api
+          envFrom:
+            - configMapRef:
+                name: env-sensorlog-api

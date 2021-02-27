@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  RABBITMQ_DEFAULT_VHOST: {{.Values.connections.rabbitmq.vhost}}
+  RABBITMQ_DEFAULT_PASS: {{.Values.connections.rabbitmq.password}}
+  RABBITMQ_DEFAULT_USER: {{.Values.connections.rabbitmq.user}}
+kind: ConfigMap
+metadata:
+  labels:
+    run: env-rabbitmq
+  name: env-rabbitmq

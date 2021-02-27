@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: rabbitmq
+  name: rabbitmq
+spec:
+  ports:
+    - port: 5672
+      targetPort: 5672
+  selector:
+    run: rabbitmq
+  type: ClusterIP

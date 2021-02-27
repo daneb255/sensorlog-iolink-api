@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: influxdb
+  name: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: influxdb
+  template:
+    metadata:
+      labels:
+        run: influxdb
+    spec:
+      containers:
+        - image: influxdb:1.8
+          imagePullPolicy: Always
+          name: influxdb
+          envFrom:
+            - configMapRef:
+                name: env-influxdb

@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  INFLUXDB_DB: {{.Values.connections.influx.db_name}}
+  INFLUXDB_ADMIN_USER: {{.Values.connections.influx.user}}
+  INFLUXDB_ADMIN_PASSWORD: {{.Values.connections.influx.password}}
+kind: ConfigMap
+metadata:
+  labels:
+    run: env-influxdb
+  name: env-influxdb

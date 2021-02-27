@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  RABBITMQ_USER: {{.Values.connections.rabbitmq.user}}
+  RABBITMQ_PASSWORD: {{.Values.connections.rabbitmq.password}}
+  RABBITMQ_VHOST: {{.Values.connections.rabbitmq.vhost}}
+  RABBITMQ_HOST: {{.Values.connections.rabbitmq.host}}
+  INFLUX_USER: {{.Values.connections.influx.user}}
+  INFLUX_PASSWORD: {{.Values.connections.influx.password}}
+  INFLUX_HOST: {{.Values.connections.influx.host}}
+kind: ConfigMap
+metadata:
+  labels:
+    run: env-sensorlog-consumer
+  name: env-sensorlog-consumer

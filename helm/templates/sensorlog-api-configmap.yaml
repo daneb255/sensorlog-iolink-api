@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  RABBITMQ_USER: {{.Values.connections.rabbitmq.user}}
+  RABBITMQ_PASSWORD: {{.Values.connections.rabbitmq.password}}
+  RABBITMQ_VHOST: {{.Values.connections.rabbitmq.vhost}}
+  RABBITMQ_HOST: {{.Values.connections.rabbitmq.host}}
+  RABBITMQ_PORT: {{.Values.connections.rabbitmq.host}}
+  FLASK_SECRET_KEY: {{.Values.flask_secret_key}}
+kind: ConfigMap
+metadata:
+  labels:
+    run: env-sensorlog-api
+  name: env-sensorlog-api

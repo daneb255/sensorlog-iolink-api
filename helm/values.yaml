@@ -1,0 +1,12 @@
+flask_secret_key: CHANGEME
+connections:
+  influx:
+    user:
+    password:
+    host: influxdb
+    db_name: iphone
+  rabbitmq:
+    host: rabbitmq
+    user:
+    password:
+    vhost: sensordata
