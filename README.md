@@ -37,3 +37,6 @@ Thanks to Dr. Bernd Thomas for SensoorLog iOS Application
 [Sensorlog iOS App](http://sensorlog.berndthomas.net/)
 
 [App Store - Sensorlog download](https://apps.apple.com/us/app/sensorlog/id388014573)
+
+## Example: Grafana Screenshot
+![Grafana example](img/grafana_influx_dashboard.PNG)
