@@ -1,0 +1,5 @@
+.editorconfig
+README.md
+start_server.sh
+core/.env
+core/.env-example

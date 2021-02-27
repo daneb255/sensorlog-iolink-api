@@ -1,0 +1,14 @@
+FROM python:3.8-slim
+
+RUN pip install pipenv
+
+WORKDIR /app
+
+COPY ./core/config.py /app/core/config.py
+COPY Pipfile* .
+COPY rabbit_consumer.py .
+COPY influx_handler.py .
+
+RUN pipenv install --system --deploy
+
+CMD [ "python", "rabbit_consumer.py" ]

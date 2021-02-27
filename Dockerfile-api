@@ -1,0 +1,17 @@
+FROM python:3.8-slim
+
+RUN pip install pipenv
+
+WORKDIR /app
+
+COPY ./core/config.py /app/core/config.py
+COPY Pipfile* .
+COPY rabbit_producer.py .
+COPY server.py .
+COPY flask_server.py .
+COPY iolink.py .
+
+RUN pipenv install --system --deploy
+
+EXPOSE 5000
+CMD [ "python", "server.py" ]
