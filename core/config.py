@@ -11,8 +11,17 @@ load_dotenv(verbose=True)
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
-IO_LINK_MASTER_URL = os.getenv("IO_LINK_MASTER_URL")
-FLASK_SECRET_KEY = os.getenv("FLASK_SECRET_KEY")
+IO_LINK_MASTER_URL = os.environ.get("IO_LINK_MASTER_URL", 'CHANGEME')
+FLASK_SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", 'CHANGEME')
+
+INFLUX_USER = os.environ.get("INFLUX_USER", "CHANGEME")
+INFLUX_PASSWORD = os.environ.get("INFLUX_PASSWORD", "CHANGEME")
+INFLUX_HOST = os.environ.get("INFLUX_HOST", "influxdb")
+
+RABBITMQ_HOST = os.environ.get("RABBITMQ_HOST", "rabbitmq")
+RABBITMQ_USER = os.environ.get("RABBITMQ_USER", "CHANGEME")
+RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD", "CHANGEME")
+RABBITMQ_VHOST = os.environ.get("RABBITMQ_VHOST", "sensordata")
 
 SENSORS = {
     "1": {
