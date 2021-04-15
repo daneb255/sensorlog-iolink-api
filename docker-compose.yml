@@ -68,6 +68,7 @@ services:
         - INFLUX_USER=admin
         - INFLUX_PASSWORD=admin
         - INFLUX_HOST=influxdb
+        - INFLUX_DB=sensorlog
 
 volumes:
   postgres-data:

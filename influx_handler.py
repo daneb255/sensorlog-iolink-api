@@ -1,9 +1,9 @@
 from influxdb import InfluxDBClient
-from core.config import INFLUX_PASSWORD, INFLUX_USER, INFLUX_HOST
+from core.config import INFLUX_PASSWORD, INFLUX_USER, INFLUX_HOST, INFLUX_DB
 
 client = InfluxDBClient(host=INFLUX_HOST, port=8086, username=INFLUX_USER, password=INFLUX_PASSWORD)
 
-client.switch_database('iphone')
+client.switch_database(INFLUX_DB)
 
 
 def write_to_influx(timestamp, x, y, z, device_id, label):

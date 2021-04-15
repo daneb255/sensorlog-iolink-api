@@ -17,6 +17,7 @@ FLASK_SECRET_KEY = os.environ.get("FLASK_SECRET_KEY", 'CHANGEME')
 INFLUX_USER = os.environ.get("INFLUX_USER", "CHANGEME")
 INFLUX_PASSWORD = os.environ.get("INFLUX_PASSWORD", "CHANGEME")
 INFLUX_HOST = os.environ.get("INFLUX_HOST", "influxdb")
+INFLUX_DB = os.environ.get("INFLUX_DB", "sensorlog")
 
 RABBITMQ_HOST = os.environ.get("RABBITMQ_HOST", "rabbitmq")
 RABBITMQ_USER = os.environ.get("RABBITMQ_USER", "CHANGEME")
