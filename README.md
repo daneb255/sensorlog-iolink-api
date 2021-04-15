@@ -8,7 +8,7 @@
 - `flask run`
 
 ### Linux
-- `FLASK_APP=flask_server.py FLASK_ENV=development flask run`
+- `FLASK_APP=flask_server.py FLASK_ENV=development flask run --host=0.0.0.0`
 
 ## Start Prod-Server
 - `python server.py`

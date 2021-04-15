@@ -5,7 +5,7 @@ from core.config import IO_LINK_MASTER_URL, SENSORS
 def get_sensor_data():
     try:
         for k, sensor in SENSORS.items():
-            url = '{}/port[{}]/iolinkdevice/pdin/getdata'.format(IO_LINK_MASTER_URL, sensor["port"])
+            url = '{}/iolinkmaster/port[{}]/iolinkdevice/pdin/getdata'.format(IO_LINK_MASTER_URL, sensor["port"])
             r = requests.get(url)
             if r.json()['code'] == 200:
                 print('Successfully get value from Port {} | Sensor {}!'.format(k, sensor["id"]))
