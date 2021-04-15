@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mongo:
+  mongodb:
     restart: always
     image: mongo:4.4.5-bionic
     volumes:
@@ -8,7 +8,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
-  mongo-express:
+  mongodb-express:
     restart: always
     image: mongo-express:latest
     ports:

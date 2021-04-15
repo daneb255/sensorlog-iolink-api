@@ -19,6 +19,16 @@ INFLUX_PASSWORD = os.environ.get("INFLUX_PASSWORD", "CHANGEME")
 INFLUX_HOST = os.environ.get("INFLUX_HOST", "influxdb")
 INFLUX_DB = os.environ.get("INFLUX_DB", "sensorlog")
 
+MONGODB_USER = os.environ.get("MONGODB_USER", "CHANGEME")
+MONGODB_PASSWORD = os.environ.get("MONGODB_PASSWORD", "CHANGEME")
+MONGODB_HOST = os.environ.get("MONGODB_HOST", "mongodb")
+MONGODB_DB = os.environ.get("MONGODB_DB", "sensorlog")
+
+POSTGRES_USER = os.environ.get("POSTGRES_USER", "CHANGEME")
+POSTGRESPASSWORD = os.environ.get("POSTGRES_PASSWORD", "CHANGEME")
+POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "postgres")
+POSTGRES_DB = os.environ.get("POSTGRES_DB", "sensorlog")
+
 RABBITMQ_HOST = os.environ.get("RABBITMQ_HOST", "rabbitmq")
 RABBITMQ_USER = os.environ.get("RABBITMQ_USER", "CHANGEME")
 RABBITMQ_PASSWORD = os.environ.get("RABBITMQ_PASSWORD", "CHANGEME")
