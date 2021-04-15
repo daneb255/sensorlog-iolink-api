@@ -15,7 +15,7 @@ spec:
         run: sensorlog-consumer
     spec:
       containers:
-        - image: dbitzer/sensorlog-consumer:1.3
+        - image: dbitzer/sensorlog-consumer:1.3.2
           imagePullPolicy: Always
           name: sensorlog-consumer
           envFrom:

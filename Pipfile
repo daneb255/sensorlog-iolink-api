@@ -6,10 +6,11 @@ name = "pypi"
 [packages]
 requests = "==2.25.1"
 Flask = "==1.1.2"
-waitress = "==1.4.4"
+waitress = "==2.0.0"
 python-dotenv = "*"
 influxdb = "==5.3.1"
 pika = "==1.2.0"
+
 [dev-packages]
 
 [requires]

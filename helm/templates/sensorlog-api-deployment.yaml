@@ -15,7 +15,7 @@ spec:
         run: sensorlog-api
     spec:
       containers:
-        - image: dbitzer/sensorlog-api:1.2
+        - image: dbitzer/sensorlog-api:1.2.1
           imagePullPolicy: Always
           name: sensorlog-api
           envFrom:
