@@ -10,6 +10,8 @@ waitress = "==2.0.0"
 python-dotenv = "*"
 influxdb = "==5.3.1"
 pika = "==1.2.0"
+pymongo = "==3.11.3"
+psycopg2 = "==2.8.6"
 
 [dev-packages]
 
