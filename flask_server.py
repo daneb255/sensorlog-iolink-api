@@ -15,9 +15,12 @@ def get_data():
 
 @app.route('/mobile-data', methods=['GET', 'POST'])
 def parse_request():
-    rabbit_producer(request.data)
     print(request.json)
-    return jsonify(success=True)
+
+    if rabbit_producer(request.data):
+        return jsonify(success=True)
+    else:
+        return jsonify(success=False)
 
 
 @app.route("/")
