@@ -66,6 +66,8 @@ services:
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
       GF_SERVER_ROOT_URL: http://192.168.37.131/grafana
       GF_SERVER_DOMAIN: 192.168.37.131
+    volumes:
+    - grafana-data:/var/lib/grafana
     labels:
       - "traefik.http.routers.grafana.rule=Host(`grafana.traefik.localdomain`) || (Host(`192.168.37.131`) && PathPrefix(`/grafana`))"
       - "traefik.http.routers.grafana.middlewares=grafana-strippefix"
@@ -113,3 +115,4 @@ volumes:
   postgres-data:
   mongo-data:
   influx-data:
+  grafana-data:
