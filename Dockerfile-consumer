@@ -8,6 +8,8 @@ COPY ./core/config.py /app/core/config.py
 COPY Pipfile* .
 COPY rabbit_consumer.py .
 COPY influx_handler.py .
+COPY mongodb_handler.py .
+COPY postgres_handler.py .
 
 RUN pipenv install --system --deploy
 

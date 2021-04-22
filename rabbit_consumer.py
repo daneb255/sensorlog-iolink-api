@@ -5,6 +5,8 @@ import json
 
 from core.config import RABBITMQ_USER, RABBITMQ_VHOST, RABBITMQ_PASSWORD, RABBITMQ_HOST
 from influx_handler import write_to_influx
+from mongodb_handler import write_to_mongo
+from postgres_handler import write_to_postgres
 
 
 def main():
@@ -18,8 +20,15 @@ def main():
     def callback(ch, method, properties, body):
         data = json.loads(body.decode('utf-8'))
         try:
-            write_to_influx(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
-                            data['motionUserAccelerationZ'], data['deviceID'], data['label'])
+            if data['database'] == 'mongodb':
+                write_to_mongo(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
+                                data['motionUserAccelerationZ'], data['deviceID'], data['label'])
+            elif data['database'] == 'influxdb':
+                write_to_influx(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
+                                data['motionUserAccelerationZ'], data['deviceID'], data['label'])
+            elif data['database'] == 'postgres':
+                write_to_postgres(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
+                                data['motionUserAccelerationZ'], data['deviceID'], data['label'])
         except Exception as e:
             print(e)
         print("[x] Received %r" % body)
