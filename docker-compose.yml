@@ -20,6 +20,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: sensordata
   mongo-express:
     restart: always
     image: mongo-express:latest
@@ -110,6 +111,14 @@ services:
       INFLUX_PASSWORD: admin
       INFLUX_HOST: influxdb
       INFLUX_DB: sensorlog
+      MONGODB_USER: admin
+      MONGODB_PASSWORD: admin
+      MONGODB_HOST: mongo
+      MONGODB_DB: sensordata
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: sensordata
 
 volumes:
   postgres-data:
