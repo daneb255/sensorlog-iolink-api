@@ -14,7 +14,7 @@ def get_data():
     return data
 
 
-@app.route('/simulator/<database>', methods=['POST'])
+@app.route('/simulator/<database>', methods=['GET'])
 def simulator(database):
     data = generate_data(database)
     if rabbit_producer(data):
