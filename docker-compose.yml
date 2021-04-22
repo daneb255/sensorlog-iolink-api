@@ -21,18 +21,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
       MONGO_INITDB_DATABASE: sensordata
-  mongo-express:
-    restart: always
-    image: mongo-express:latest
-    labels:
-      - "traefik.http.routers.mongo-express.rule=Host(`mongo-express.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/mongo-express`))"
-      - "traefik.http.routers.mongo-express.middlewares=mongo-express-strippefix"
-      - "traefik.http.middlewares.mongo-express-strippefix.stripprefix.prefixes=/mongo-express"
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
-      ME_CONFIG_MONGODB_SERVER: "sensorlog-iolink-api_mongo_1"
-      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
-      ME_CONFIG_SITE_BASEURL: /mongo-express/
   postgres:
     restart: always
     image: postgres:12
@@ -42,20 +30,11 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
       POSTGRES_DB: sensordata
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4:latest
-    labels:
-      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/pgadmin4`))"
-      - "traefik.http.routers.pgadmin.middlewares=pgadmin-strippefix"
-      - "traefik.http.middlewares.pgadmin-strippefix.stripprefix.prefixes=/pgadmin4"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin@pgadmin.org
-      PGADMIN_DEFAULT_PASSWORD: admin
-      SCRIPT_NAME: /pgadmin4
   rabbitmq:
     restart: always
     image: rabbitmq:latest
+    ports:
+    - 5672:5672
     environment:
         - RABBITMQ_DEFAULT_VHOST=sensordata
         - RABBITMQ_DEFAULT_PASS=admin
@@ -84,7 +63,7 @@ services:
       INFLUXDB_ADMIN_PASSWORD: admin
   sensorlog-api:
     restart: always
-    image: 'dbitzer/sensorlog-api:1.2.2'
+    image: 'dbitzer/sensorlog-api:nosql_uni_project-1.0'
     labels:
       - "traefik.enable=true"
       - "traefik.port=5000"
@@ -119,6 +98,10 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_HOST: postgres
       POSTGRES_DB: sensordata
+  benchmark:
+    restart: always
+    image: dbitzer/apache-ab-benchmark:1.0
+    tty: true
 
 volumes:
   postgres-data:
