@@ -24,7 +24,7 @@ services:
     restart: always
     image: mongo-express:latest
     labels:
-      - "traefik.http.routers.mongo-express.rule=Host(`mongo-express.traefik.localdomain`) || (Host(`192.168.37.131`) && PathPrefix(`/mongo-express`))"
+      - "traefik.http.routers.mongo-express.rule=Host(`mongo-express.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/mongo-express`))"
       - "traefik.http.routers.mongo-express.middlewares=mongo-express-strippefix"
       - "traefik.http.middlewares.mongo-express-strippefix.stripprefix.prefixes=/mongo-express"
     environment:
@@ -45,7 +45,7 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4:latest
     labels:
-      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.traefik.localdomain`) || (Host(`192.168.37.131`) && PathPrefix(`/pgadmin4`))"
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/pgadmin4`))"
       - "traefik.http.routers.pgadmin.middlewares=pgadmin-strippefix"
       - "traefik.http.middlewares.pgadmin-strippefix.stripprefix.prefixes=/pgadmin4"
     environment:
@@ -64,12 +64,12 @@ services:
     image: grafana/grafana
     environment:
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
-      GF_SERVER_ROOT_URL: http://192.168.37.131/grafana
-      GF_SERVER_DOMAIN: 192.168.37.131
+      GF_SERVER_ROOT_URL: http://127.0.0.1/grafana
+      GF_SERVER_DOMAIN: 127.0.0.1
     volumes:
     - grafana-data:/var/lib/grafana
     labels:
-      - "traefik.http.routers.grafana.rule=Host(`grafana.traefik.localdomain`) || (Host(`192.168.37.131`) && PathPrefix(`/grafana`))"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/grafana`))"
       - "traefik.http.routers.grafana.middlewares=grafana-strippefix"
       - "traefik.http.middlewares.grafana-strippefix.stripprefix.prefixes=/grafana"
   influxdb:
@@ -87,7 +87,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=5000"
-      - "traefik.http.routers.sensorlog-api.rule=Host(`sensorlog-api.traefik.localdomain`) || (Host(`192.168.37.131`) && PathPrefix(`/sensorlog-api`))"
+      - "traefik.http.routers.sensorlog-api.rule=Host(`sensorlog-api.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/sensorlog-api`))"
       - "traefik.http.routers.sensorlog-api.middlewares=sensorlog-api-strippefix"
       - "traefik.http.middlewares.sensorlog-api-strippefix.stripprefix.prefixes=/sensorlog-api"
     environment:
@@ -98,7 +98,7 @@ services:
       FLASK_SECRET_KEY: asdfasdf123
   sensorlog-consumer:
     restart: always
-    image: 'dbitzer/sensorlog-consumer:nosql_uni_project-1.0'
+    image: 'dbitzer/sensorlog-consumer:nosql_uni_project-1.1'
     labels:
       - "traefik.enable=false"
     environment:

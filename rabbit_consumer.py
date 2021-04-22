@@ -20,21 +20,30 @@ def main():
     def callback(ch, method, properties, body):
         data = json.loads(body.decode('utf-8'))
         try:
+            print(f"Writing to {data['database']}")
             if data['database'] == 'mongodb':
-                write_to_mongo(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
-                                data['motionUserAccelerationZ'], data['deviceID'], data['label'])
+                if write_to_mongo(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
+                                  data['motionUserAccelerationZ'], data['deviceID'], data['label']):
+                    print(f"Written to {data['database']}")
+                else:
+                    print(f"Not written to {data['database']}")
             elif data['database'] == 'influxdb':
-                write_to_influx(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
-                                data['motionUserAccelerationZ'], data['deviceID'], data['label'])
+                if write_to_influx(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
+                                   data['motionUserAccelerationZ'], data['deviceID'], data['label']):
+                    print(f"Written to {data['database']}")
+                else:
+                    print(f"Not written to {data['database']}")
             elif data['database'] == 'postgres':
-                write_to_postgres(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
-                                data['motionUserAccelerationZ'], data['deviceID'], data['label'])
+                if write_to_postgres(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
+                                     data['motionUserAccelerationZ'], data['deviceID'], data['label']):
+                    print(f"Written to {data['database']}")
+                else:
+                    print(f"Not written to {data['database']}")
         except Exception as e:
             print(e)
-        print("[x] Received %r" % body)
+        print(f"[x] Received {body}")
 
     channel.basic_consume(queue='sensor-data', on_message_callback=callback, auto_ack=True)
-
     print(' [*] Waiting for messages. To exit press CTRL+C')
     channel.start_consuming()
 

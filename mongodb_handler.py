@@ -10,21 +10,19 @@ def write_to_mongo(timestamp, x, y, z, device_id, label):
         client = MongoClient(f'mongodb://{username}:{password}@{MONGODB_HOST}')
         db = client[MONGODB_DB]
         col = db["motionUserAcceleration"]
-        data = [
-            {
-                "measurement": "motionUserAcceleration",
-                "tags": {
-                    "device_id": device_id,
-                    "label": label
-                },
-                "time": timestamp,
-                "fields": {
-                    "motionUserAccelerationX": x,
-                    "motionUserAccelerationY": y,
-                    "motionUserAccelerationZ": z
-                }
+        data = {
+            "measurement": "motionUserAcceleration",
+            "tags": {
+                "device_id": device_id,
+                "label": label
+            },
+            "time": timestamp,
+            "fields": {
+                "motionUserAccelerationX": x,
+                "motionUserAccelerationY": y,
+                "motionUserAccelerationZ": z
             }
-        ]
+        }
 
         col.insert_one(data)
         return True
