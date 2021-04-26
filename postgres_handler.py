@@ -10,9 +10,10 @@ def write_to_postgres(timestamp, x, y, z, device_id, label):
                                 password=POSTGRESPASSWORD,
                                 database=POSTGRES_DB)
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO motionUserAcceleration (device_id, label, date_time, motionUserAccelerationX,"
-                       " motionUserAccelerationY, motionUserAccelerationZ) VALUES(%s, %s, %s, %s, %s, %s)",
+        cursor.execute("INSERT INTO motionuseracceleration (device_id, label, date_time, motionuseraccelerationx, motionuseraccelerationy,"
+                       " motionuseraccelerationz) VALUES(%s, %s, %s, %s, %s, %s)",
                        (device_id, label, timestamp, x, y, z))
+        conn.commit()
         cursor.close()
         conn.close()
         return True
