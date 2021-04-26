@@ -41,7 +41,7 @@ services:
         - RABBITMQ_DEFAULT_USER=admin
   grafana:
     restart: always
-    image: grafana/grafana
+    image: grafana/grafana:latest
     environment:
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
       GF_SERVER_ROOT_URL: http://127.0.0.1/grafana
@@ -52,6 +52,19 @@ services:
       - "traefik.http.routers.grafana.rule=Host(`grafana.traefik.localdomain`) || (Host(`127.0.0.1`) && PathPrefix(`/grafana`))"
       - "traefik.http.routers.grafana.middlewares=grafana-strippefix"
       - "traefik.http.middlewares.grafana-strippefix.stripprefix.prefixes=/grafana"
+  telegraf:
+    restart: always
+    image: telegraf:latest
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+    volumes:
+     - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+     - /sys:/rootfs/sys:ro
+     - /proc:/rootfs/proc:ro
+     - /etc:/rootfs/etc:ro
   influxdb:
     restart: always
     image: influxdb:1.8
