@@ -114,6 +114,8 @@ services:
   benchmark:
     restart: always
     image: dbitzer/apache-ab-benchmark:1.0
+    labels:
+      - "traefik.enable=false"
     tty: true
 
 volumes:
