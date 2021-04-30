@@ -15,4 +15,6 @@ COPY simulator.py .
 RUN pipenv install --system --deploy
 
 EXPOSE 5000
-CMD [ "python", "server.py" ]
+
+CMD gunicorn --worker-class gevent --workers 16 --threads 16 --worker-connections 10000 --bind 0.0.0.0:5000 server:app --timeout 10 --keep-alive 5 --log-level info
+

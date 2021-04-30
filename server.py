@@ -1,4 +1,4 @@
-from waitress import serve
-import flask_server
+from flask_server import app
 
-serve(flask_server.app, host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run()
