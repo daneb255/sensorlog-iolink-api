@@ -15,7 +15,7 @@ spec:
             name: sensorlog-api
             port:
               number: 5000
-        path: /sensorlog
+        path: /
       - pathType: Prefix
         backend:
           service:
