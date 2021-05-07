@@ -76,7 +76,7 @@ services:
       INFLUXDB_ADMIN_PASSWORD: admin
   sensorlog-api:
     restart: always
-    image: 'dbitzer/sensorlog-api:nosql_uni_project-1.2.2'
+    image: 'dbitzer/sensorlog-api:nosql_uni_project-1.2.3'
     labels:
       - "traefik.enable=true"
       - "traefik.port=5000"
