@@ -18,8 +18,8 @@ def main():
     channel.queue_declare(queue='sensor-data')
 
     def callback(ch, method, properties, body):
-        data = json.loads(body.decode('utf-8'))
         try:
+            data = json.loads(body.decode('utf-8'))
             if 'database' not in data:
                 data['database'] = 'influxdb'
             print(f"Writing to {data['database']}")
