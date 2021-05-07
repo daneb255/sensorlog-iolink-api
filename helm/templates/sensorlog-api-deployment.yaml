@@ -15,7 +15,7 @@ spec:
         run: sensorlog-api
     spec:
       containers:
-        - image: dbitzer/sensorlog-api:nosql_uni_project-1.2.3
+        - image: dbitzer/sensorlog-api:nosql_uni_project-1.2.4
           imagePullPolicy: Always
           name: sensorlog-api
           envFrom:
