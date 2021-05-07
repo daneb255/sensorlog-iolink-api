@@ -20,21 +20,22 @@ def main():
     def callback(ch, method, properties, body):
         data = json.loads(body.decode('utf-8'))
         try:
-            database = data.get('database', 'influxdb')
+            if 'database' not in data:
+                data['database'] = 'influxdb'
             print(f"Writing to {data['database']}")
-            if database == 'mongodb':
+            if data['database'] == 'mongodb':
                 if write_to_mongo(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
                                   data['motionUserAccelerationZ'], data['deviceID'], data['label']):
                     print(f"Written to {data['database']}")
                 else:
                     print(f"Not written to {data['database']}")
-            elif database == 'influxdb':
+            elif data['database'] == 'influxdb':
                 if write_to_influx(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
                                    data['motionUserAccelerationZ'], data['deviceID'], data['label']):
                     print(f"Written to {data['database']}")
                 else:
                     print(f"Not written to {data['database']}")
-            elif database == 'postgres':
+            elif data['database'] == 'postgres':
                 if write_to_postgres(data['loggingTime'], data['motionUserAccelerationX'], data['motionUserAccelerationY'],
                                      data['motionUserAccelerationZ'], data['deviceID'], data['label']):
                     print(f"Written to {data['database']}")
