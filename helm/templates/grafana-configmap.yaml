@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+kind: ConfigMap
+metadata:
+  labels:
+    run: env-grafana
+  name: env-grafana
