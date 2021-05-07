@@ -7,6 +7,7 @@ data:
   INFLUX_USER: {{.Values.connections.influx.user}}
   INFLUX_PASSWORD: {{.Values.connections.influx.password}}
   INFLUX_HOST: {{.Values.connections.influx.host}}
+  INFLUX_DB: {{.Values.connections.influx.db_name}}
 kind: ConfigMap
 metadata:
   labels:
