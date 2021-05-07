@@ -1,5 +1,6 @@
 flask_secret_key: CHANGEME
 host: CHANGEME
+scheme: http
 connections:
   influx:
     user:
@@ -11,6 +12,3 @@ connections:
     user:
     password:
     vhost: sensordata
-  grafana:
-    host: CHANGEME
-    scheme: http

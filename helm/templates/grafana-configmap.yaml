@@ -1,8 +1,8 @@
 apiVersion: v1
 data:
   GF_SERVER_SERVE_FROM_SUB_PATH: "true"
-  GF_SERVER_ROOT_URL: {{.Values.grafana.scheme}}://{{.Values.grafana.host}}/grafana
-  GF_SERVER_DOMAIN: {{.Values.grafana.host}}
+  GF_SERVER_ROOT_URL: {{.Values.scheme}}://{{.Values.host}}/grafana
+  GF_SERVER_DOMAIN: {{.Values.host}}
 kind: ConfigMap
 metadata:
   labels:
