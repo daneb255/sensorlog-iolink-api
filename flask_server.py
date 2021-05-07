@@ -26,8 +26,9 @@ def simulator(database):
 @app.route('/mobile-data', methods=['GET', 'POST'])
 def parse_request():
     print(request.json)
-
-    if rabbit_producer(request.data):
+    data = request.data
+    data['database'] = 'influxdb'
+    if rabbit_producer(data):
         return jsonify(success=True)
     else:
         return jsonify(success=False)
