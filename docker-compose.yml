@@ -91,7 +91,7 @@ services:
       FLASK_SECRET_KEY: asdfasdf123
   sensorlog-consumer:
     restart: always
-    image: 'dbitzer/sensorlog-consumer:nosql_uni_project-1.2.4'
+    image: 'dbitzer/sensorlog-consumer:1.4.0'
     labels:
       - "traefik.enable=false"
     environment:
